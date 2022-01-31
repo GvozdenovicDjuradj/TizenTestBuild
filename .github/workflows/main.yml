@@ -20,12 +20,15 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     
-#       - name: Set Swap Space
-#         uses: pierotofy/set-swap-space@master
-#         with:
-#           swap-size-gb: 12
+      - name: Set Swap Space
+        uses: pierotofy/set-swap-space@master
+        with:
+          swap-size-gb: 12
+          
       - name: set hvm heap size
-        run: export _JAVA_OPTIONS=-Xmx2048m
+        run: java -XshowSettings:vm|
+         export _JAVA_OPTIONS=-Xmx2048m |
+         java -XshowSettings:vm
     
       - name: checkout actions
         uses: actions/checkout@v2
