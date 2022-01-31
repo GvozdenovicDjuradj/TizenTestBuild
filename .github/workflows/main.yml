@@ -23,11 +23,11 @@ jobs:
       - name: checkout actions
         uses: actions/checkout@v2
     
-      - name: Cache Tizen Studio installer
-        uses: ./.github/actions/tizen-build-action
-        with:
-          path: ${{ github.workspace }}/tizen-studio.bin
-          key: tizen-studio-installer
+#       - name: Cache Tizen Studio installer
+#         uses: ./.github/actions/tizen-build-action
+#         with:
+#           path: ${{ github.workspace }}/tizen-studio.bin
+#           key: tizen-studio-installer
     
       - name: Build Tizen app
         id: tizen-build-action
