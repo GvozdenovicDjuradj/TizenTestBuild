@@ -39,7 +39,7 @@ jobs:
         uses: ./.github/actions/tizen-build-action
         with:
           project-dir: ${{ github.workspace }}
-#           author-key: ${{ secrets.TIZEN_AUTHOR_KEY }}
+          author-key: ${{ secrets.TIZEN_AUTHOR_KEY }}
           author-password: ${{ secrets.BOOPRO_PASSWORD }}
 
       - name: Upload Tizen package artifact
