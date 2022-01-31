@@ -26,10 +26,8 @@ jobs:
           swap-size-gb: 12
           
       - name: set jvm heap size
-        run: java -XshowSettings:vm &
-         java -Xmx2048m &
-         java -XshowSettings:vm
-    
+        run: java -Xmx2048m
+         
       - name: checkout actions
         uses: actions/checkout@v2
     
