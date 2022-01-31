@@ -32,6 +32,7 @@ jobs:
 
       - name: create app dir
         run: mkdir ${{ github.workspace }}/TizenApp
+             ls ${{ github.workspace }}
     
       - name: Build Tizen app
         id: tizen-build-action
