@@ -26,8 +26,8 @@ jobs:
           swap-size-gb: 12
           
       - name: set hvm heap size
-        run: java -XshowSettings:vm|
-         export _JAVA_OPTIONS=-Xmx2048m |
+        run: java -XshowSettings:vm
+         export _JAVA_OPTIONS=-Xmx2048m
          java -XshowSettings:vm
     
       - name: checkout actions
