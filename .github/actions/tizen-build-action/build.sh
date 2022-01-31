@@ -85,6 +85,8 @@ ERROR_LOG="$GITHUB_WORKSPACE/tizen-studio-data/cli/logs/cli.log"
 
 tizen build-web -- "$PROJECT_DIR" \
 
+tizen package -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_PATH" -- "$PROJECT_DIR/.buildResult"
+
 if [ $? -eq 0 ]; then
     SUCCESS=true
     echo "::set-output name=package-artifact::$PACKAGE_OUTPUT_PATH"
