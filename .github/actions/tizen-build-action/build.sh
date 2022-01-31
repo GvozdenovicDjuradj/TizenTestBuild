@@ -2,7 +2,7 @@
 # Set up Tizen Studio
 #
 TIZEN_STUDIO="$GITHUB_WORKSPACE/tizen-studio"
-INSTALLER="$GITHUB_WORKSPACE/tizen-studio_4.1.1.bin"
+INSTALLER="$GITHUB_WORKSPACE/tizen-studio_4.5.1.bin"
 
 wget -nc -O "$INSTALLER"  http://download.tizen.org/sdk/Installer/tizen-studio_4.1.1/web-cli_Tizen_Studio_4.1.1_ubuntu-64.bin
 chmod a+x "$INSTALLER"
@@ -84,7 +84,7 @@ PACKAGE_OUTPUT_PATH="$PROJECT_DIR/output.wgt"
 ERROR_LOG="$GITHUB_WORKSPACE/tizen-studio-data/cli/logs/cli.log"
 
 tizen build-web -- "$PROJECT_DIR" \
-    && tizen package -Xmx1024m -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_PATH" -- "$PROJECT_DIR/.buildResult"
+    && tizen package -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_PATH" -- "$PROJECT_DIR/.buildResult"
 
 if [ $? -eq 0 ]; then
     SUCCESS=true
