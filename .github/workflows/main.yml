@@ -27,7 +27,7 @@ jobs:
           
       - name: set jvm heap size
         run: java -XshowSettings:vm &
-         export _JAVA_OPTIONS=-Xmx2048m &
+         java -Xmx2048m &
          java -XshowSettings:vm
     
       - name: checkout actions
