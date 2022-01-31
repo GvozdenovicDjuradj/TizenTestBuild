@@ -19,15 +19,23 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+    
+      - name: Cache Tizen Studio installer
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/tizen-studio_*.bin
+          key: tizen-studio-installer
+    
+      - name: Build Tizen app
+        id: tizen-build-action
+        uses: sourcetoad/tizen-build-action@v1.0.0
+        with:
+          project-dir: ${{ github.workspace }}/TizenApp
+#           author-key: ${{ secrets.TIZEN_AUTHOR_KEY }}
+          author-password: ${{ secrets.BOOPRO_PASSWORD }}
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Upload Tizen package artifact
+        uses: actions/upload-artifact@v2
+        with:
+           name: app-${{ github.sha }}.wgt
+           path: ${{ steps.tizen-build-action.outputs.package-artifact }}
