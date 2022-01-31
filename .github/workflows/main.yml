@@ -28,12 +28,16 @@ jobs:
 #         with:
 #           path: ${{ github.workspace }}/tizen-studio.bin
 #           key: tizen-studio-installer
+
+
+      - name: create app dir
+        run: mkdir ${{ github.workspace }}/TizenApp
     
       - name: Build Tizen app
         id: tizen-build-action
         uses: ./.github/actions/tizen-build-action
         with:
-          project-dir: ${{ github.workspace }}
+          project-dir: ${{ github.workspace }}/TizenApp
 #           author-key: ${{ secrets.TIZEN_AUTHOR_KEY }}
           author-password: ${{ secrets.BOOPRO_PASSWORD }}
 
