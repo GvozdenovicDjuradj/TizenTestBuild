@@ -24,6 +24,8 @@ jobs:
 #         uses: pierotofy/set-swap-space@master
 #         with:
 #           swap-size-gb: 12
+      - name: set hvm heap size
+        run: export _JAVA_OPTIONS=-Xmx2048m
     
       - name: checkout actions
         uses: actions/checkout@v2
