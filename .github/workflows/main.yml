@@ -26,7 +26,7 @@ jobs:
           swap-size-gb: 12
           
       - name: set jvm heap size
-        run: export _JAVA_OPTIONS=-Xmx4096m
+        run: package-manager-cli update --add-modules java.xml.bind
          
       - name: checkout actions
         uses: actions/checkout@v2
