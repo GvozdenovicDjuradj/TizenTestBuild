@@ -26,7 +26,7 @@ jobs:
       - name: Cache Tizen Studio installer
         uses: ./.github/actions/tizen-build-action
         with:
-          path: ${{ github.workspace }}/tizen-studio_*.bin
+          path: ${{ github.workspace }}/tizen-studio.bin
           key: tizen-studio-installer
     
       - name: Build Tizen app
