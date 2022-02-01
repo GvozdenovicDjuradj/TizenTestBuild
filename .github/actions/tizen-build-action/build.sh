@@ -2,7 +2,7 @@
 # Set up Tizen Studio
 #
 TIZEN_STUDIO="$GITHUB_WORKSPACE/tizen-studio"
-INSTALLER="$GITHUB_WORKSPACE/tizen-studio_4.1.1.bin"
+INSTALLER="$GITHUB_WORKSPACE/tizen-studio_3.7.bin"
 
 wget -nc -O "$INSTALLER"  https://react-tv-build-output.s3.ap-south-1.amazonaws.com/Tizen-studio/web-cli_Tizen_Studio_3.7_ubuntu-64.bin
 chmod a+x "$INSTALLER"
