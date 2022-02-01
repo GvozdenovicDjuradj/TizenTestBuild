@@ -83,7 +83,8 @@ chmod a-w "$GLOBAL_PROFILES_PATH"
 PACKAGE_OUTPUT_PATH="$PROJECT_DIR/output.wgt"
 ERROR_LOG="$GITHUB_WORKSPACE/tizen-studio-data/cli/logs/cli.log"
 
-tizen build-web -- "$PROJECT_DIR"
+tizen build-web -- "$PROJECT_DIR" # \
+    # && tizen package -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_PATH" -- "$PROJECT_DIR/.buildResult"
 
 if [ $? -eq 0 ]; then
     SUCCESS=true
@@ -96,12 +97,12 @@ fi
 #
 # Clean up
 #
-tizen clean -- "$PROJECT_DIR"
+# tizen clean -- "$PROJECT_DIR"
 
-rm -rf "$GLOBAL_PROFILES_PATH" \
-    "$CUSTOM_AUTHOR_CERT" \
-    "$CUSTOM_DISTRIBUTOR_CERT" \
-    "$CUSTOM_DISTRIBUTOR_KEY"
+# rm -rf "$GLOBAL_PROFILES_PATH" \
+  #   "$CUSTOM_AUTHOR_CERT" \
+  #   "$CUSTOM_DISTRIBUTOR_CERT" \
+  #   "$CUSTOM_DISTRIBUTOR_KEY"
 
 if $SUCCESS; then
     exit 0;
