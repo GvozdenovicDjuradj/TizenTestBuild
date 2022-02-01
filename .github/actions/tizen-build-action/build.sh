@@ -83,10 +83,6 @@ chmod a-w "$GLOBAL_PROFILES_PATH"
 PACKAGE_OUTPUT_PATH="$PROJECT_DIR/output.wgt"
 ERROR_LOG="$GITHUB_WORKSPACE/tizen-studio-data/cli/logs/cli.log"
 
-export _JAVA_OPTIONS=-Xmx8192m
-
-export _JAVA_OPTIONS=-Xms8192m
-
 tizen build-web -- "$PROJECT_DIR" \
     && tizen package -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_PATH" -- "$PROJECT_DIR/.buildResult"
 
