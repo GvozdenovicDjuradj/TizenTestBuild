@@ -15,7 +15,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -23,16 +23,13 @@ jobs:
       - name: Set Swap Space
         uses: pierotofy/set-swap-space@master
         with:
-          swap-size-gb: 12
+          swap-size-gb: 10
           
-      - name: set jvm heap size
+      - name: set jvm max heap size
         run: export _JAVA_OPTIONS=-Xmx8192m
         
-        
-      - name: Set up JDK 17
-        uses: actions/setup-java@v1
-        with:
-          java-version: 17
+      - name: set jvm initial heap size
+        run: export _JAVA_OPTIONS=-Xms8192m
          
       - name: checkout actions
         uses: actions/checkout@v2
@@ -42,11 +39,6 @@ jobs:
         with:
           path: ${{ github.workspace }}/tizen-studio_4.1.1.bin
           key: tizen-studio-installer
-
-
-#       - name: create app dir
-#         run: mkdir ${{ github.workspace }}/TizenApp |
-#              ls ${{ github.workspace }}
     
       - name: Build Tizen app
         id: tizen-build-action
@@ -55,9 +47,6 @@ jobs:
           project-dir: ${{ github.workspace }}
           author-key: ${{ secrets.TIZEN_AUTHOR_KEY }}
           author-password: ${{ secrets.BOOPRO_PASSWORD }}
-          
-#       - name: build tizen package
-#         run: tizen package -t wgt -s sourcetoad-tizen-public -o "${{ github.workspace }}/output.wgt" -- "${{ github.workspace }}/.buildResult"
 
       - name: Upload Tizen package artifact
         uses: actions/upload-artifact@v2
