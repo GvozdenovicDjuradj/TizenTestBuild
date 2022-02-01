@@ -24,12 +24,6 @@ jobs:
         uses: pierotofy/set-swap-space@master
         with:
           swap-size-gb: 10
-          
-      - name: set jvm max heap size
-        run: export _JAVA_OPTIONS=-Xmx8192m
-        
-      - name: set jvm initial heap size
-        run: export _JAVA_OPTIONS=-Xms8192m
          
       - name: checkout actions
         uses: actions/checkout@v2
