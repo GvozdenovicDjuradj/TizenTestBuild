@@ -85,6 +85,8 @@ ERROR_LOG="$GITHUB_WORKSPACE/tizen-studio-data/cli/logs/cli.log"
 
 tizen cli-config -l
 
+tizen cli-config default.build.configuration=Release
+
 tizen build-web -- "$PROJECT_DIR" \
 	&& tizen package -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_PATH" -- "$PROJECT_DIR/.buildResult"
 
