@@ -55,6 +55,9 @@ jobs:
           project-dir: ${{ github.workspace }}
           author-key: ${{ secrets.TIZEN_AUTHOR_KEY }}
           author-password: ${{ secrets.BOOPRO_PASSWORD }}
+          
+      - name: build tizen package
+        run: tizen package -t wgt -s sourcetoad-tizen-public -o "${{ github.workspace }}/output.wgt" -- "${{ github.workspace }}/.buildResult"
 
       - name: Upload Tizen package artifact
         uses: actions/upload-artifact@v2
