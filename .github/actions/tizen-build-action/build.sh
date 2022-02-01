@@ -28,7 +28,7 @@ fi
 DEFAULT_AUTHOR_CERT="$TIZEN_STUDIO/tools/certificate-generator/certificates/developer/tizen-developer-ca.cer"
 AUTHOR_CERT="${CUSTOM_AUTHOR_CERT:-"$DEFAULT_AUTHOR_CERT"}"
 
-AUTHOR_KEY="$GITHUB_WORKSPACE/author-key.p12"
+AUTHOR_KEY="$GITHUB_WORKSPACE/testcert.p12"
 echo -n "$3" | base64 -d >"$AUTHOR_KEY"
 
 AUTHOR_PASSWORD="$4"
