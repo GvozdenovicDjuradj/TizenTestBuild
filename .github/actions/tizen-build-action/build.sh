@@ -93,7 +93,9 @@ tizen cli-config default.build.compiler=gcc
 
 tizen cli-config -l
 
+export _JAVA_OPTIONS=-Xmx8192m
 
+export _JAVA_OPTIONS=-Xms8192m
 
 tizen build-web -- "$PROJECT_DIR" \
 	&& tizen package -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_PATH" -- "$PROJECT_DIR/.buildResult"
