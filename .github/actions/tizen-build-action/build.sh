@@ -89,6 +89,8 @@ tizen cli-config default.build.configuration=Release
 
 tizen cli-config default.sdb.timeout=600000
 
+tizen cli-config default.build.compiler=gcc
+
 tizen cli-config -l
 
 
