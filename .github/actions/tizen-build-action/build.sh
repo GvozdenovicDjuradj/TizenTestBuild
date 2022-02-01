@@ -61,9 +61,9 @@ Build and signing parameters:
  - privilege: $PRIVILEGE
 EOF
 
-#
+
 # Create profiles.xml
-#
+
 GLOBAL_PROFILES_PATH="$(tizen cli-config -l | grep -i 'default.profiles.path=' | sed 's/^default\.profiles\.path=//g')"
 cat <<EOF >"$GLOBAL_PROFILES_PATH"
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
