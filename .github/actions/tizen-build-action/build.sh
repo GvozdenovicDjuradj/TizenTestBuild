@@ -87,6 +87,8 @@ tizen cli-config default.build.architecture=arm
 
 tizen cli-config default.build.configuration=Release
 
+tizen cli-config default.sdb.timeout=600000
+
 tizen cli-config -l
 
 
