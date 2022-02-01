@@ -2,9 +2,9 @@
 # Set up Tizen Studio
 #
 TIZEN_STUDIO="$GITHUB_WORKSPACE/tizen-studio"
-INSTALLER="$GITHUB_WORKSPACE/tizen-studio_4.5.1.bin"
+INSTALLER="$GITHUB_WORKSPACE/tizen-studio_4.1.1.bin"
 
-wget -nc -O "$INSTALLER"  https://download.tizen.org/sdk/Installer/tizen-studio_4.5.1/web-cli_Tizen_Studio_4.5.1_ubuntu-64.bin
+wget -nc -O "$INSTALLER"  http://download.tizen.org/sdk/Installer/tizen-studio_4.1.1/web-cli_Tizen_Studio_4.1.1_ubuntu-64.bin
 chmod a+x "$INSTALLER"
 "$INSTALLER" --accept-license $TIZEN_STUDIO
 
@@ -28,7 +28,7 @@ fi
 DEFAULT_AUTHOR_CERT="$TIZEN_STUDIO/tools/certificate-generator/certificates/developer/tizen-developer-ca.cer"
 AUTHOR_CERT="${CUSTOM_AUTHOR_CERT:-"$DEFAULT_AUTHOR_CERT"}"
 
-AUTHOR_KEY="$GITHUB_WORKSPACE/testcert.p12"
+AUTHOR_KEY="$GITHUB_WORKSPACE/author-key.p12"
 echo -n "$3" | base64 -d >"$AUTHOR_KEY"
 
 AUTHOR_PASSWORD="$4"
@@ -61,9 +61,9 @@ Build and signing parameters:
  - privilege: $PRIVILEGE
 EOF
 
-
+#
 # Create profiles.xml
-
+#
 GLOBAL_PROFILES_PATH="$(tizen cli-config -l | grep -i 'default.profiles.path=' | sed 's/^default\.profiles\.path=//g')"
 cat <<EOF >"$GLOBAL_PROFILES_PATH"
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -83,22 +83,12 @@ chmod a-w "$GLOBAL_PROFILES_PATH"
 PACKAGE_OUTPUT_PATH="$PROJECT_DIR/output.wgt"
 ERROR_LOG="$GITHUB_WORKSPACE/tizen-studio-data/cli/logs/cli.log"
 
-tizen cli-config default.build.architecture=arm
-
-tizen cli-config default.build.configuration=Release
-
-tizen cli-config default.sdb.timeout=600000
-
-tizen cli-config default.build.compiler=gcc
-
-tizen cli-config -l
-
 export _JAVA_OPTIONS=-Xmx8192m
 
 export _JAVA_OPTIONS=-Xms8192m
 
 tizen build-web -- "$PROJECT_DIR" \
-	&& tizen package -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_PATH" -- "$PROJECT_DIR/.buildResult"
+    && tizen package -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_PATH" -- "$PROJECT_DIR/.buildResult"
 
 if [ $? -eq 0 ]; then
     SUCCESS=true
@@ -111,12 +101,12 @@ fi
 #
 # Clean up
 #
- 
+tizen clean -- "$PROJECT_DIR"
 
- rm -rf "$GLOBAL_PROFILES_PATH" \
-     "$CUSTOM_AUTHOR_CERT" \
-     "$CUSTOM_DISTRIBUTOR_CERT" \
-     "$CUSTOM_DISTRIBUTOR_KEY"
+rm -rf "$GLOBAL_PROFILES_PATH" \
+    "$CUSTOM_AUTHOR_CERT" \
+    "$CUSTOM_DISTRIBUTOR_CERT" \
+    "$CUSTOM_DISTRIBUTOR_KEY"
 
 if $SUCCESS; then
     exit 0;
